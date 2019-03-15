@@ -999,8 +999,8 @@ $.fn.dropdown = function(parameters) {
             module.setup.menu({values: values});
             $.each(values, function(index, item) {
               if(item.selected == true) {
-                module.debug('Setting initial selection to', item[fields.value]);
-                module.set.selected(item[fields.value]);
+                module.debug('Setting initial selection to', String(item[fields.value]));
+                module.set.selected(String(item[fields.value]));
                 if(!module.is.multiple()) {
                   return false;
                 }
