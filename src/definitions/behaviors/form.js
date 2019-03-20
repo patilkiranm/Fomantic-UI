@@ -762,12 +762,12 @@ $.fn.form = function(parameters) {
                 ? rule
                 : [rule]
             ;
-            if(rule == undefined) {
-              module.debug('Removed all rules');
-              validation[field].rules = [];
+            if(validation[field] === undefined || !Array.isArray(validation[field].rules)) {
               return;
             }
-            if(validation[field] == undefined || !Array.isArray(validation[field].rules)) {
+            if(rule === undefined) {
+              module.debug('Removed all rules');
+              validation[field].rules = [];
               return;
             }
             $.each(validation[field].rules, function(index, rule) {
@@ -790,7 +790,7 @@ $.fn.form = function(parameters) {
           // alias
           rules: function(field, rules) {
             if(Array.isArray(field)) {
-              $.each(fields, function(index, field) {
+              $.each(field, function(index, field) {
                 module.remove.rule(field, rules);
               });
             }
